@@ -18,15 +18,22 @@
       --panel:#11131a;
       --text:#e8eaf0;
       --muted:#b7bccb;
-      --line:#24283a;
-      --accent:#7c5cff;
-      --accent2:#38bdf8;
+
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
       --max: 1120px;
 
-      --chip: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.08);
+      /* Brighter list items (your request) */
+      --item-bg: rgba(255,255,255,.045);
+      --item-bg-hover: rgba(255,255,255,.065);
+      --item-border: rgba(255,255,255,.10);
+      --item-border-hover: rgba(255,255,255,.14);
+
+      --chip-bg: rgba(255,255,255,.07);
+      --chip-border: rgba(255,255,255,.10);
+
+      --accent:#7c5cff;
+      --accent2:#38bdf8;
     }
 
     *{box-sizing:border-box}
@@ -40,7 +47,7 @@
       font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
     a{color:inherit;text-decoration:none}
-    a:hover{opacity:.92}
+    a:hover{opacity:.95}
 
     .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 72px}
 
@@ -57,15 +64,26 @@
       padding:14px 18px;
       display:flex;align-items:center;justify-content:space-between;gap:16px;
     }
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
     .avatar{
-      width:56px;height:56px;border-radius:18px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      width:60px;height:60px;border-radius:20px;
+      object-fit:cover;
       box-shadow: var(--shadow);
       flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.10);
     }
-    .brand h1{font-size:20px;letter-spacing:.2px;margin:0;font-weight:700;}
-    .brand small{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+    .brand h1{font-size:22px;letter-spacing:-.2px;margin:0;font-weight:750;line-height:1.05}
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:14px;
+      margin-top:4px;
+      line-height:1.35;
+      max-width:70ch;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
 
     .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .nav a{
@@ -82,7 +100,7 @@
     /* Hero */
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid var(--border);
+      border:1px solid rgba(255,255,255,.08);
       border-radius:var(--radius);
       box-shadow: var(--shadow);
     }
@@ -90,9 +108,9 @@
     .hero-main{padding:20px 20px 18px}
     .hero-sub{
       color:var(--muted);
-      font-size:16px;line-height:1.65;
+      font-size:16px;line-height:1.7;
       margin:0 0 14px;
-      max-width:72ch;
+      max-width:76ch;
     }
     .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 
@@ -115,11 +133,11 @@
       margin:14px 0 0;
       font-size:14px;
       line-height:1.6;
-      max-width:72ch;
+      max-width:76ch;
       color:var(--muted);
     }
 
-    /* Section headers: colored pill + icon (like your example) */
+    /* Section headers: gradient pill + emoji (only here) */
     section{padding:22px 0 0}
     .section-head{
       display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -143,11 +161,11 @@
     .badge .ico{opacity:.95}
     .hint{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
 
-    /* Different gradients per section */
     .sec-featured .badge{background:linear-gradient(90deg, rgba(56,189,248,.55), rgba(124,92,255,.55))}
-    .sec-blogs    .badge{background:linear-gradient(90deg, rgba(34,197,94,.50), rgba(56,189,248,.45))}
+    .sec-blogs    .badge{background:linear-gradient(90deg, rgba(34,197,94,.48), rgba(56,189,248,.40))}
     .sec-videos   .badge{background:linear-gradient(90deg, rgba(124,92,255,.55), rgba(56,189,248,.45))}
-    .sec-community .badge{background:linear-gradient(90deg, rgba(56,189,248,.50), rgba(168,85,247,.45))}
+    .sec-community .badge{background:linear-gradient(90deg, rgba(56,189,248,.45), rgba(168,85,247,.42))}
+    .sec-badges   .badge{background:linear-gradient(90deg, rgba(245,158,11,.45), rgba(56,189,248,.35))}
 
     /* Compact list items */
     .list{
@@ -161,19 +179,14 @@
       align-items:flex-start;
       padding:12px 14px;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.07);
-      background:rgba(255,255,255,.02);
-      transition: transform .12s ease, background .12s ease;
+      border:1px solid var(--item-border);
+      background:var(--item-bg);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-    .item:hover{transform: translateY(-1px); background:rgba(255,255,255,.03)}
-    .item .left{
-      width:38px;height:38px;
-      border-radius:14px;
-      display:grid;place-items:center;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      flex:0 0 auto;
-      font-size:16px;
+    .item:hover{
+      transform: translateY(-1px);
+      background:var(--item-bg-hover);
+      border-color: var(--item-border-hover);
     }
     .item .body{min-width:0}
     .item h3{
@@ -182,6 +195,7 @@
       letter-spacing:-.15px;
       line-height:1.25;
     }
+
     .meta{
       display:flex;gap:8px;flex-wrap:wrap;align-items:center;
       margin:0 0 6px;
@@ -189,14 +203,44 @@
     .chip{
       font-size:12px;color:var(--muted);
       padding:6px 9px;border-radius:999px;
-      background:var(--chip);
-      border:1px solid rgba(255,255,255,.08);
+      background:var(--chip-bg);
+      border:1px solid var(--chip-border);
     }
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .links a{font-size:13px;font-weight:750}
-    .links a span{color:var(--muted);font-weight:750}
+    .links{display:flex;gap:12px;flex-wrap:wrap}
+    .links a{font-size:13px;font-weight:780}
+    .links a span{color:var(--muted);font-weight:780}
 
-    /* Small utility */
+    /* Badges grid */
+    .badges-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap:14px;
+    }
+    @media (max-width: 900px){ .badges-grid{grid-template-columns: repeat(2, minmax(0, 1fr));} }
+    @media (max-width: 520px){ .badges-grid{grid-template-columns: 1fr;} }
+
+    .badge-card{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid var(--item-border);
+      background:var(--item-bg);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .badge-card:hover{
+      transform: translateY(-1px);
+      background:var(--item-bg-hover);
+      border-color: var(--item-border-hover);
+    }
+    .badge-card img{
+      width:140px;
+      height:auto;
+      display:block;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
+    }
+
     .muted{color:var(--muted)}
   </style>
 </head>
@@ -205,7 +249,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#top" aria-label="Go to top">
-        <div class="avatar" aria-hidden="true"></div>
+        <img src="images/jadecncf2.jpeg" alt="Jade Luiza Lassery" class="avatar" />
         <div>
           <h1>Jade Luiza Lassery</h1>
           <small>Technical Product Engineer • Observability • Cloud Native Specialist • Open source & Community builder</small>
@@ -214,6 +258,7 @@
 
       <nav class="nav" aria-label="Primary">
         <a href="#featured">Featured</a>
+        <a href="#badges">Badges</a>
         <a href="#blogs">Blogs</a>
         <a href="#videos">Videos</a>
         <a href="#community">Community</a>
@@ -252,7 +297,6 @@
 
       <div class="list">
         <div class="item">
-          <div class="left">📝</div>
           <div class="body">
             <div class="meta">
               <span class="chip">Kubernetes</span>
@@ -267,7 +311,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🎥</div>
           <div class="body">
             <div class="meta">
               <span class="chip">AI</span>
@@ -282,7 +325,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🌍</div>
           <div class="body">
             <div class="meta">
               <span class="chip">Organizer</span>
@@ -298,6 +340,40 @@
       </div>
     </section>
 
+    <!-- BADGES -->
+    <section id="badges" class="sec-badges">
+      <div class="section-head">
+        <h2 class="section-title">
+          <span class="badge"><span class="ico">🏅</span> Badges</span>
+        </h2>
+        <p class="hint">Certifications and community recognition.</p>
+      </div>
+
+      <div class="badges-grid">
+        <div class="badge-card">
+          <img src="images/kcna-kubernetes-and-cloud-native-associate.png" alt="Kubernetes and Cloud Native Associate (KCNA)" />
+        </div>
+
+        <div class="badge-card">
+          <!-- If this filename differs, update it to match your folder exactly -->
+          <img src="images/otca-opentelemetry-certified-associate.png" alt="OpenTelemetry Certified Associate (OTCA)" />
+        </div>
+
+        <div class="badge-card">
+          <img src="images/organizer-2024-kcd.png" alt="Kubernetes Community Days Organizer 2024" />
+        </div>
+
+        <div class="badge-card">
+          <img src="images/cncf-ambassador-2025-2027.png" alt="CNCF Ambassador 2025–2027" />
+        </div>
+
+        <div class="badge-card">
+          <!-- If this filename differs, update it to match your folder exactly -->
+          <img src="images/code-certified-open-source-developer-for-enterprise.png" alt="Code Certified Open Source Developer" />
+        </div>
+      </div>
+    </section>
+
     <!-- BLOGS -->
     <section id="blogs" class="sec-blogs">
       <div class="section-head">
@@ -309,7 +385,6 @@
 
       <div class="list">
         <div class="item">
-          <div class="left">🧩</div>
           <div class="body">
             <div class="meta">
               <span class="chip">OpenTelemetry</span><span class="chip">Observability</span><span class="chip">Kubernetes</span>
@@ -322,11 +397,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🤖</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AI</span><span class="chip">Observability</span>
-            </div>
+            <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span></div>
             <h3>Making Observability AI-Native with the Logz.io MCP Server</h3>
             <div class="links">
               <a href="https://logz.io/blog/logz-mcp-server/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -335,11 +407,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🪵</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">Logs</span><span class="chip">Open source</span>
-            </div>
+            <div class="meta"><span class="chip">Logs</span><span class="chip">Open source</span></div>
             <h3>Top 5 Open Source Log Management Tools (and How to Choose the Right One)</h3>
             <div class="links">
               <a href="https://logz.io/blog/top-open-source-log-management-tools/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -348,11 +417,8 @@
         </div>
 
         <div class="item">
-          <div class="left">⚙️</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span>
-            </div>
+            <div class="meta"><span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span></div>
             <h3>Logz.io AI Agents: Transforming Observability Through Intelligent Automation</h3>
             <div class="links">
               <a href="https://logz.io/blog/transforming-observability-through-intelligent-automation/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -361,11 +427,8 @@
         </div>
 
         <div class="item">
-          <div class="left">☁️</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span>
-            </div>
+            <div class="meta"><span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span></div>
             <h3>Logz.io Integration for AWS and Kubernetes Observability</h3>
             <div class="links">
               <a href="https://logz.io/blog/observability-for-aws-native-monitoring/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -374,11 +437,8 @@
         </div>
 
         <div class="item">
-          <div class="left">☕</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AI</span><span class="chip">Productivity</span>
-            </div>
+            <div class="meta"><span class="chip">AI</span><span class="chip">Productivity</span></div>
             <h3>AI Agents: Your data sidekick (minus the coffee breaks)</h3>
             <div class="links">
               <a href="https://logz.io/blog/ai-agents-your-data-sidekick-minus-the-coffee-breaks/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -387,11 +447,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🧯</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span>
-            </div>
+            <div class="meta"><span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span></div>
             <h3>The 8 Hidden Pitfalls of Using AWS CloudWatch</h3>
             <div class="links">
               <a href="https://logz.io/blog/aws-cloudwatch-pitfalls/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -400,11 +457,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🧰</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span>
-            </div>
+            <div class="meta"><span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span></div>
             <h3>How to monitor OpenShift using the Datadog Operator</h3>
             <div class="links">
               <a href="https://developers.redhat.com/articles/2024/04/16/how-monitor-openshift-using-datadog-operator" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -413,11 +467,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🚚</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span>
-            </div>
+            <div class="meta"><span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span></div>
             <h3>Migrating from DIY ELK to a full SaaS platform</h3>
             <div class="links">
               <a href="https://www.cncf.io/blog/2025/01/24/migrating-from-diy-elk-to-a-full-saas-platform/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -426,11 +477,8 @@
         </div>
 
         <div class="item">
-          <div class="left">🧠</div>
           <div class="body">
-            <div class="meta">
-              <span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span>
-            </div>
+            <div class="meta"><span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span></div>
             <h3>Reimagining log management tools and software: The impact of AI and GenAI</h3>
             <div class="links">
               <a href="https://www.cncf.io/blog/2025/03/24/reimagining-log-management-tools-and-software-the-impact-of-ai-and-genai/" target="_blank" rel="noopener">Read <span>↗</span></a>
@@ -451,7 +499,6 @@
 
       <div class="list">
         <div class="item">
-          <div class="left">🎬</div>
           <div class="body">
             <div class="meta"><span class="chip">Short</span><span class="chip">Kubernetes</span><span class="chip">AI</span></div>
             <h3>Troubleshoot Kubernetes Performance Issues with AI</h3>
@@ -462,7 +509,6 @@
         </div>
 
         <div class="item">
-          <div class="left">📉</div>
           <div class="body">
             <div class="meta"><span class="chip">Short</span><span class="chip">Cost</span><span class="chip">AI</span></div>
             <h3>Optimizing Observability Data Volume and Cost with AI</h3>
@@ -473,7 +519,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🧭</div>
           <div class="body">
             <div class="meta"><span class="chip">Short</span><span class="chip">RCA</span><span class="chip">AI Agent</span></div>
             <h3>Finding Root Cause Quickly with Logz.io AI Agent</h3>
@@ -484,7 +529,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🧱</div>
           <div class="body">
             <div class="meta"><span class="chip">Demo</span><span class="chip">Platform</span></div>
             <h3>Logz.io Open 360 Platform Overview Demo</h3>
@@ -495,7 +539,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🗺️</div>
           <div class="body">
             <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span><span class="chip">RCA</span></div>
             <h3>AI in Observability: Mapping Root Causes with Precision</h3>
@@ -506,7 +549,6 @@
         </div>
 
         <div class="item">
-          <div class="left">🪵</div>
           <div class="body">
             <div class="meta"><span class="chip">Demo</span><span class="chip">Logs</span><span class="chip">AI</span></div>
             <h3>Logz.io AI-Powered Log Management Demo</h3>
@@ -529,18 +571,17 @@
 
       <div class="list">
         <div class="item">
-          <div class="left">📍</div>
           <div class="body">
             <div class="meta"><span class="chip">Founder</span><span class="chip">Organizer</span><span class="chip">Spain</span></div>
             <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
             <div class="links">
               <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
+              <a href="https://www.flickr.com/photos/cloudnativevalencia/" target="_blank" rel="noopener">Photos <span>↗</span></a>
             </div>
           </div>
         </div>
 
         <div class="item">
-          <div class="left">🇧🇷</div>
           <div class="body">
             <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">Marketing</span><span class="chip">Brazil</span></div>
             <h3>Lead Organizer & Marketing Manager | Kubernetes Community Days, Brazil</h3>
@@ -551,23 +592,11 @@
         </div>
 
         <div class="item">
-          <div class="left">🎤</div>
           <div class="body">
-            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">KCD 2024</span><span class="chip">Talk</span></div>
+            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">KCD 2024</span><span class="chip">Video</span></div>
             <h3>Lead Organizer | Kubernetes Community Days 2024, Brazil</h3>
             <div class="links">
               <a href="https://www.youtube.com/watch?v=P4gj--tq-wU" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="left">📷</div>
-          <div class="body">
-            <div class="meta"><span class="chip">Gallery</span><span class="chip">Meetups</span></div>
-            <h3>Cloud Native Valencia — photo gallery</h3>
-            <div class="links">
-              <a href="https://www.flickr.com/photos/cloudnativevalencia/" target="_blank" rel="noopener">Browse <span>↗</span></a>
             </div>
           </div>
         </div>
