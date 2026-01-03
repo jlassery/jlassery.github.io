@@ -3,41 +3,46 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Portfolio of blogs, technical materials, videos, events, photos and a little bit of everything I've been doing — Observability, Kubernetes, and Open source." />
+  <meta name="description" content="Jade Luiza Lassery — blogs, videos, community work and open source across Cloud Native, Kubernetes, and Observability." />
   <meta name="theme-color" content="#0b0c10" />
   <title>Jade Luiza Lassery</title>
 
-  <!-- Open Graph (for LinkedIn previews) -->
+  <!-- Open Graph (LinkedIn previews) -->
   <meta property="og:title" content="Jade Luiza Lassery" />
-  <meta property="og:description" content="Blogs, technical materials, videos, events, and photos on Cloud Native and Open source ecosystem" />
+  <meta property="og:description" content="Cloud Native, Kubernetes, and Observability — blogs, videos, and community work." />
   <meta property="og:type" content="website" />
-  <!-- Optional: add an image later and update this -->
-  <!-- <meta property="og:image" content="https://your-domain.com/preview.png" /> -->
 
   <style>
     :root{
       --bg:#0b0c10;
       --panel:#11131a;
-      --panel2:#0f1118;
       --text:#e8eaf0;
       --muted:#b7bccb;
       --line:#24283a;
       --accent:#7c5cff;
       --accent2:#38bdf8;
-      --good:#22c55e;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius: 18px;
       --max: 1120px;
+
       --chip: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.08);
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.25) 0%, rgba(11,12,16,0) 60%),
-                                      radial-gradient(900px 500px at 80% 0%, rgba(56,189,248,.20) 0%, rgba(11,12,16,0) 55%),
-                                      linear-gradient(180deg,#0b0c10 0%, #0e1020 100%);
-              color:var(--text);font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;}
+    html,body{
+      margin:0;padding:0;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.25) 0%, rgba(11,12,16,0) 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(56,189,248,.20) 0%, rgba(11,12,16,0) 55%),
+        linear-gradient(180deg,#0b0c10 0%, #0e1020 100%);
+      color:var(--text);
+      font-family:ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    }
     a{color:inherit;text-decoration:none}
     a:hover{opacity:.92}
-    .wrap{max-width:var(--max);margin:0 auto;padding:26px 18px 84px}
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:22px 18px 72px}
 
     /* Topbar */
     .topbar{
@@ -61,149 +66,138 @@
     }
     .brand h1{font-size:20px;letter-spacing:.2px;margin:0;font-weight:700;}
     .brand small{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+
     .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
     .nav a{
       font-size:13px;color:var(--muted);
       padding:8px 10px;border-radius:999px;
       border:1px solid transparent;
     }
-    .nav a:hover{color:var(--text);border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
-    .nav .cta{
+    .nav a:hover{
       color:var(--text);
-      border-color:rgba(124,92,255,.35);
-      background:linear-gradient(135deg, rgba(124,92,255,.22), rgba(56,189,248,.12));
+      border-color:rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03)
     }
 
     /* Hero */
-    .hero{padding:34px 0 10px}
-    .hero-grid{display:grid;grid-template-columns: 1fr;gap:18px;align-items:stretch}
-    @media (max-width: 920px){ .hero-grid{grid-template-columns:1fr} }
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(255,255,255,.08);
+      border:1px solid var(--border);
       border-radius:var(--radius);
       box-shadow: var(--shadow);
     }
-    .hero-main{padding:22px 22px 20px}
-    .kicker{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-      color:var(--muted);font-size:13px;margin:0 0 12px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:7px 10px;border-radius:999px;
-      background:var(--chip);
-      border:1px solid rgba(255,255,255,.08);
-    }
-    .dot{width:8px;height:8px;border-radius:99px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
-    .hero-title{
-      font-size:42px;line-height:1.06;margin:0 0 10px;
-      letter-spacing:-.6px;
-    }
-    @media (max-width: 560px){ .hero-title{font-size:34px} }
+    .hero{padding:22px 0 10px}
+    .hero-main{padding:20px 20px 18px}
     .hero-sub{
-      color:var(--muted);font-size:16px;line-height:1.6;margin:0 0 18px;
-      max-width:64ch;
+      color:var(--muted);
+      font-size:16px;line-height:1.65;
+      margin:0 0 14px;
+      max-width:72ch;
     }
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:11px 14px;border-radius:14px;
+      padding:10px 14px;border-radius:14px;
       border:1px solid rgba(255,255,255,.12);
       background:rgba(255,255,255,.03);
       color:var(--text);
-      font-weight:600;font-size:14px;
+      font-weight:650;font-size:14px;
     }
     .btn:hover{background:rgba(255,255,255,.06)}
     .btn.primary{
       border-color:rgba(124,92,255,.45);
       background:linear-gradient(135deg, rgba(124,92,255,.28), rgba(56,189,248,.14));
     }
-    .btn.small{padding:9px 12px;border-radius:12px;font-size:13px;font-weight:600}
+    .btn.small{padding:9px 12px;border-radius:12px;font-size:13px;font-weight:650}
 
-    /* Sections */
-    section{padding:26px 0 0}
+    .highlights{
+      margin:14px 0 0;
+      font-size:14px;
+      line-height:1.6;
+      max-width:72ch;
+      color:var(--muted);
+    }
+
+    /* Section headers: colored pill + icon (like your example) */
+    section{padding:22px 0 0}
     .section-head{
-      display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      margin:10px 0 10px;
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      margin:14px 0 10px;
     }
-    h2{margin:0;font-size:20px;letter-spacing:-.2px}
+    .section-title{
+      display:flex;align-items:center;gap:10px;
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+    }
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 10px 30px rgba(0,0,0,.22);
+      font-weight:800;
+      letter-spacing:.3px;
+    }
+    .badge .ico{opacity:.95}
     .hint{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
-    .grid{display:grid;gap:12px;grid-template-columns:repeat(12, 1fr)}
-    .col-4{grid-column: span 4}
-    .col-6{grid-column: span 6}
-    .col-12{grid-column: span 12}
-    @media (max-width: 920px){
-      .col-4,.col-6{grid-column: span 12}
-    }
 
-    /* Work cards */
-    .work{
-      padding:14px;
-      border-radius:var(--radius);
+    /* Different gradients per section */
+    .sec-featured .badge{background:linear-gradient(90deg, rgba(56,189,248,.55), rgba(124,92,255,.55))}
+    .sec-blogs    .badge{background:linear-gradient(90deg, rgba(34,197,94,.50), rgba(56,189,248,.45))}
+    .sec-videos   .badge{background:linear-gradient(90deg, rgba(124,92,255,.55), rgba(56,189,248,.45))}
+    .sec-community .badge{background:linear-gradient(90deg, rgba(56,189,248,.50), rgba(168,85,247,.45))}
+
+    /* Compact list items */
+    .list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.07);
       background:rgba(255,255,255,.02);
-      border:1px solid rgba(255,255,255,.06);
       transition: transform .12s ease, background .12s ease;
-      height:100%;
-      display:flex;flex-direction:column;gap:10px;
     }
-    .work:hover{transform: translateY(-1px);background:rgba(255,255,255,.035)}
-    .thumb{
-      width:100%;aspect-ratio: 16/9;border-radius:16px;
-      background:linear-gradient(135deg, rgba(124,92,255,.22), rgba(56,189,248,.12));
-      border:1px solid rgba(255,255,255,.08);
+    .item:hover{transform: translateY(-1px); background:rgba(255,255,255,.03)}
+    .item .left{
+      width:38px;height:38px;
+      border-radius:14px;
       display:grid;place-items:center;
-      color:rgba(255,255,255,.9);
-      font-weight:800;letter-spacing:.6px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      flex:0 0 auto;
+      font-size:16px;
     }
-    .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .item .body{min-width:0}
+    .item h3{
+      margin:0 0 6px;
+      font-size:15px;
+      letter-spacing:-.15px;
+      line-height:1.25;
+    }
+    .meta{
+      display:flex;gap:8px;flex-wrap:wrap;align-items:center;
+      margin:0 0 6px;
+    }
     .chip{
       font-size:12px;color:var(--muted);
       padding:6px 9px;border-radius:999px;
       background:var(--chip);
       border:1px solid rgba(255,255,255,.08);
     }
-    .work h3{margin:0;font-size:16px;letter-spacing:-.2px;line-height:1.25}
-    .work p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
-    .work .links{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap}
-    .work .links a{color:var(--text);font-size:13px;font-weight:700}
-    .work .links a span{color:var(--muted);font-weight:700}
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .links a{font-size:13px;font-weight:750}
+    .links a span{color:var(--muted);font-weight:750}
 
-    /* Photos */
-    .photo-grid{
-      display:grid;gap:10px;
-      grid-template-columns: repeat(12, 1fr);
-    }
-    .photo{grid-column: span 3;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-    @media (max-width: 920px){ .photo{grid-column: span 6} }
-    @media (max-width: 520px){ .photo{grid-column: span 12} }
-    .photo img{width:100%;height:100%;display:block;aspect-ratio: 4/3;object-fit:cover}
-    .photo figcaption{padding:10px 10px 12px;color:var(--muted);font-size:12px;line-height:1.35}
-
-    /* Footer / Contact */
-    .contact{
-      display:grid;grid-template-columns: 1fr 1fr; gap:12px; align-items:stretch;
-    }
-    @media (max-width: 920px){ .contact{grid-template-columns:1fr} }
-    .contact .box{padding:18px;border-radius:var(--radius);border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-    .contact h3{margin:0 0 8px;font-size:16px}
-    .contact p{margin:0;color:var(--muted);line-height:1.55}
-    .footer{
-      margin-top:22px;padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.08);
-      display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;
-      color:var(--muted);font-size:12px;
-    }
-
-    /* Small utilities */
+    /* Small utility */
     .muted{color:var(--muted)}
-    .spacer{height:6px}
-    .highlights{
-      margin:16px 0 0;
-      font-size:14px;
-      line-height:1.6;
-      max-width:64ch;
-    }
   </style>
 </head>
 
@@ -222,9 +216,7 @@
         <a href="#featured">Featured</a>
         <a href="#blogs">Blogs</a>
         <a href="#videos">Videos</a>
-        <a href="#events">Events</a>
-        <a href="#photos">Photos</a>
-        <a class="cta" href="#contact">Contact</a>
+        <a href="#community">Community</a>
       </nav>
     </div>
   </header>
@@ -232,304 +224,358 @@
   <main id="top" class="wrap">
     <!-- HERO -->
     <div class="hero">
-      <div class="hero-grid">
-        <div class="card hero-main">
-          <p class="kicker">
-            <span class="pill"><span class="dot" aria-hidden="true"></span> Portfolio</span>
-            <span class="pill">Blogs</span>
-            <span class="pill">Videos</span>
-            <span class="pill">Talks & Community</span>
-            <span class="pill">Photos</span>
-          </p>
+      <div class="card hero-main">
+        <p class="hero-sub">
+          I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
+        </p>
 
-          <p class="hero-sub">
-            I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn primary" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="mailto:jadellassery@gmail.com">Email</a>
-            <a class="btn small" href="#featured">Jump to featured work →</a>
-          </div>
-
-          <div class="spacer"></div>
-          <p class="muted highlights">
-            <b>Highlights:</b> OpenTelemetry and Observability quickstarts, migration stories,
-            observability AI agents, Kubernetes implementations, and open source &
-            Cloud Native communities and events.
-          </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="mailto:jadellassery@gmail.com">Email</a>
+          <a class="btn small" href="#featured">Jump to featured work →</a>
         </div>
+
+        <p class="highlights">
+          <b>Highlights:</b> OpenTelemetry and Observability quickstarts, migration stories, observability AI agents, Kubernetes implementations, and open source & Cloud Native communities and events.
+        </p>
       </div>
     </div>
 
     <!-- FEATURED -->
-    <section id="featured">
+    <section id="featured" class="sec-featured">
       <div class="section-head">
-        <h2>Featured work</h2>
-        <p class="hint">Swap these placeholders with your best 3–6 pieces. Recruiters will read this first.</p>
+        <h2 class="section-title">
+          <span class="badge"><span class="ico">⭐</span> Featured</span>
+        </h2>
+        <p class="hint">Your top picks for a quick recruiter skim.</p>
       </div>
 
-      <div class="grid">
-        <article class="work col-4">
-          <div class="thumb">BLOG</div>
-          <div class="meta">
-            <span class="chip">Kubernetes</span>
-            <span class="chip">Observability</span>
-            <span class="chip">2025 Trends</span>
+      <div class="list">
+        <div class="item">
+          <div class="left">📝</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Observability</span>
+              <span class="chip">2025 Trends</span>
+            </div>
+            <h3>Modern Kubernetes monitoring: Metrics, tools, and AIOps</h3>
+            <div class="links">
+              <a href="https://developers.redhat.com/articles/2025/12/17/modern-kubernetes-monitoring-metrics-tools-and-aiops" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Modern Kubernetes monitoring: Metrics, tools, and AIOps</h3>
-          <div class="links">
-            <a href="https://developers.redhat.com/articles/2025/12/17/modern-kubernetes-monitoring-metrics-tools-and-aiops" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-4">
-          <div class="thumb">VIDEO</div>
-          <div class="meta">
-            <span class="chip">AI Agent</span>
-            <span class="chip">RCA</span>
-            <span class="chip">Demo</span>
+        <div class="item">
+          <div class="left">🎥</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AI</span>
+              <span class="chip">Logs</span>
+              <span class="chip">Demo</span>
+            </div>
+            <h3>Logz.io AI-Powered Log Management Demo</h3>
+            <div class="links">
+              <a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
           </div>
-          <h3>AI-Powered Log Management: Faster Troubleshooting</h3>
-          <div class="links">
-            <a href="https://www.youtube.com/watch?v=J6uVF1cXchE&t=8s" target="_blank" rel="noopener">Watch <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-4">
-          <div class="thumb">EVENT</div>
-          <div class="meta">
-            <span class="chip">CNCF</span>
-            <span class="chip">Community</span>
-            <span class="chip">Organizer</span>
+        <div class="item">
+          <div class="left">🌍</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Organizer</span>
+              <span class="chip">CNCF</span>
+              <span class="chip">Community</span>
+            </div>
+            <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
+            <div class="links">
+              <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
+            </div>
           </div>
-          <h3>Cloud Native Valencia, Spain</h3>
-          <div class="links">
-            <a href="https://community.cncf.io/cloud-native-valencia/" target="_blank" rel="noopener">Details <span>↗</span></a>
-            <a href="#events">All events <span>→</span></a>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
     <!-- BLOGS -->
-    <section id="blogs">
+    <section id="blogs" class="sec-blogs">
       <div class="section-head">
-        <h2>Blogs</h2>
-        <p class="hint">A selection of posts across OpenTelemetry, Kubernetes, observability, and AI.</p>
+        <h2 class="section-title">
+          <span class="badge"><span class="ico">✍️</span> Blogs</span>
+        </h2>
+        <p class="hint">Posts across OpenTelemetry, Kubernetes, observability, and AI.</p>
       </div>
 
-      <div class="grid">
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">OpenTelemetry</span><span class="chip">Observability</span><span class="chip">Kubernetes</span>
+      <div class="list">
+        <div class="item">
+          <div class="left">🧩</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">OpenTelemetry</span><span class="chip">Observability</span><span class="chip">Kubernetes</span>
+            </div>
+            <h3>From Zero to Observability: Your first steps sending OpenTelemetry data to an Observability backend</h3>
+            <div class="links">
+              <a href="https://dev.to/jadelassery/from-zero-to-observability-your-first-steps-sending-opentelemetry-data-to-an-observability-backend-29l7" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>From Zero to Observability: Your first steps sending OpenTelemetry data to an Observability backend</h3>
-          <div class="links">
-            <a href="https://dev.to/jadelassery/from-zero-to-observability-your-first-steps-sending-opentelemetry-data-to-an-observability-backend-29l7" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AI</span><span class="chip">Observability</span><span class="chip">Open source</span>
+        <div class="item">
+          <div class="left">🤖</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AI</span><span class="chip">Observability</span>
+            </div>
+            <h3>Making Observability AI-Native with the Logz.io MCP Server</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/logz-mcp-server/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Making Observability AI-Native with the Logz.io MCP Server</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/logz-mcp-server/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">Logs</span><span class="chip">Open source</span>
+        <div class="item">
+          <div class="left">🪵</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Logs</span><span class="chip">Open source</span>
+            </div>
+            <h3>Top 5 Open Source Log Management Tools (and How to Choose the Right One)</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/top-open-source-log-management-tools/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Top 5 Open Source Log Management Tools (and How to Choose the Right One)</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/top-open-source-log-management-tools/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span>
+        <div class="item">
+          <div class="left">⚙️</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span>
+            </div>
+            <h3>Logz.io AI Agents: Transforming Observability Through Intelligent Automation</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/transforming-observability-through-intelligent-automation/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Logz.io AI Agents: Transforming Observability Through Intelligent Automation</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/transforming-observability-through-intelligent-automation/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span>
+        <div class="item">
+          <div class="left">☁️</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span>
+            </div>
+            <h3>Logz.io Integration for AWS and Kubernetes Observability</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/observability-for-aws-native-monitoring/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Logz.io Integration for AWS and Kubernetes Observability</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/observability-for-aws-native-monitoring/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AI</span><span class="chip">Productivity</span>
+        <div class="item">
+          <div class="left">☕</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AI</span><span class="chip">Productivity</span>
+            </div>
+            <h3>AI Agents: Your data sidekick (minus the coffee breaks)</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/ai-agents-your-data-sidekick-minus-the-coffee-breaks/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>AI Agents: Your data sidekick (minus the coffee breaks)</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/ai-agents-your-data-sidekick-minus-the-coffee-breaks/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span>
+        <div class="item">
+          <div class="left">🧯</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span>
+            </div>
+            <h3>The 8 Hidden Pitfalls of Using AWS CloudWatch</h3>
+            <div class="links">
+              <a href="https://logz.io/blog/aws-cloudwatch-pitfalls/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>The 8 Hidden Pitfalls of Using AWS CloudWatch</h3>
-          <div class="links">
-            <a href="https://logz.io/blog/aws-cloudwatch-pitfalls/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span>
+        <div class="item">
+          <div class="left">🧰</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span>
+            </div>
+            <h3>How to monitor OpenShift using the Datadog Operator</h3>
+            <div class="links">
+              <a href="https://developers.redhat.com/articles/2024/04/16/how-monitor-openshift-using-datadog-operator" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>How to monitor OpenShift using the Datadog Operator</h3>
-          <div class="links">
-            <a href="https://developers.redhat.com/articles/2024/04/16/how-monitor-openshift-using-datadog-operator" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span>
+        <div class="item">
+          <div class="left">🚚</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span>
+            </div>
+            <h3>Migrating from DIY ELK to a full SaaS platform</h3>
+            <div class="links">
+              <a href="https://www.cncf.io/blog/2025/01/24/migrating-from-diy-elk-to-a-full-saas-platform/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Migrating from DIY ELK to a full SaaS platform</h3>
-          <div class="links">
-            <a href="https://www.cncf.io/blog/2025/01/24/migrating-from-diy-elk-to-a-full-saas-platform/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
 
-        <article class="work col-6">
-          <div class="meta">
-            <span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span>
+        <div class="item">
+          <div class="left">🧠</div>
+          <div class="body">
+            <div class="meta">
+              <span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span>
+            </div>
+            <h3>Reimagining log management tools and software: The impact of AI and GenAI</h3>
+            <div class="links">
+              <a href="https://www.cncf.io/blog/2025/03/24/reimagining-log-management-tools-and-software-the-impact-of-ai-and-genai/" target="_blank" rel="noopener">Read <span>↗</span></a>
+            </div>
           </div>
-          <h3>Reimagining log management tools and software: The impact of AI and GenAI</h3>
-          <div class="links">
-            <a href="https://www.cncf.io/blog/2025/03/24/reimagining-log-management-tools-and-software-the-impact-of-ai-and-genai/" target="_blank" rel="noopener">Read <span>↗</span></a>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
 
     <!-- VIDEOS -->
-    <section id="videos">
+    <section id="videos" class="sec-videos">
       <div class="section-head">
-        <h2>Videos</h2>
-        <p class="hint">A few recordings and demos (more coming soon).</p>
+        <h2 class="section-title">
+          <span class="badge"><span class="ico">▶️</span> Videos</span>
+        </h2>
+        <p class="hint">Shorts + full demos.</p>
       </div>
 
-      <div class="grid">
-        <article class="work col-6">
-          <div class="meta"><span class="chip">AI Agent</span><span class="chip">Logs</span><span class="chip">Demo</span></div>
-          <h3>AI-Powered Log Management: Faster Troubleshooting</h3>
-          <div class="links">
-            <a href="https://www.youtube.com/watch?v=J6uVF1cXchE&t=8s" target="_blank" rel="noopener">Watch <span>↗</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- EVENTS -->
-    <section id="events">
-      <div class="section-head">
-        <h2>Events & talks</h2>
-        <p class="hint">Community work, meetups, and speaking (I’ll keep adding as I go).</p>
-      </div>
-
-      <div class="grid">
-        <article class="work col-12">
-          <div class="meta">
-            <span class="chip">CNCF</span><span class="chip">Community</span><span class="chip">Organizer</span>
-          </div>
-          <h3>Cloud Native Valencia, Spain</h3>
-          <p>Meetups and community activity under the CNCF umbrella.</p>
-          <div class="links">
-            <a href="https://community.cncf.io/cloud-native-valencia/" target="_blank" rel="noopener">Details <span>↗</span></a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- PHOTOS -->
-    <section id="photos">
-      <div class="section-head">
-        <h2>Photos</h2>
-        <p class="hint">Replace these with your own photos when ready (GitHub Pages-friendly option: put them in /images).</p>
-      </div>
-
-      <div class="photo-grid">
-        <figure class="photo">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=60" alt="Speaking at an event" />
-          <figcaption>Speaking / panel moment (replace with your own)</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=60" alt="Meetup group photo" />
-          <figcaption>Meetup / community photo (replace with your own)</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1200&q=60" alt="Working session" />
-          <figcaption>Workshop / working session (replace with your own)</figcaption>
-        </figure>
-        <figure class="photo">
-          <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=60" alt="Conference hallway track" />
-          <figcaption>Conference hallway track (replace with your own)</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p class="hint">Fastest way to reach me: LinkedIn.</p>
-      </div>
-
-      <div class="contact">
-        <div class="box">
-          <h3>Let’s talk</h3>
-          <p>
-            If you’re hiring for Technical Product / Technical Marketing / DevRel roles (especially around observability, OpenTelemetry, Kubernetes, or AI),
-            I’m happy to share more examples or walk through my work.
-          </p>
-          <div class="spacer"></div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-            <a class="btn primary" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener">Message me on LinkedIn</a>
-            <a class="btn" href="mailto:jadellassery@gmail.com">Email</a>
+      <div class="list">
+        <div class="item">
+          <div class="left">🎬</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Short</span><span class="chip">Kubernetes</span><span class="chip">AI</span></div>
+            <h3>Troubleshoot Kubernetes Performance Issues with AI</h3>
+            <div class="links">
+              <a href="https://youtube.com/shorts/xpS3blofCsU?si=qzwoCm-p4lFR94ue" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
           </div>
         </div>
 
-        <div class="box">
-          <h3>Quick links</h3>
-          <p class="muted">Profiles & channels.</p>
-          <div class="spacer"></div>
-          <div style="display:grid; gap:10px; margin-top:12px;">
-            <a class="btn" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="item">
+          <div class="left">📉</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Short</span><span class="chip">Cost</span><span class="chip">AI</span></div>
+            <h3>Optimizing Observability Data Volume and Cost with AI</h3>
+            <div class="links">
+              <a href="https://youtube.com/shorts/sWGS9shpdvE?si=_jjmvOezDu2vvedB" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🧭</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Short</span><span class="chip">RCA</span><span class="chip">AI Agent</span></div>
+            <h3>Finding Root Cause Quickly with Logz.io AI Agent</h3>
+            <div class="links">
+              <a href="https://youtube.com/shorts/UQrcO9e2rk8?si=6XBCfk50YqBm9dcY" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🧱</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Demo</span><span class="chip">Platform</span></div>
+            <h3>Logz.io Open 360 Platform Overview Demo</h3>
+            <div class="links">
+              <a href="https://www.youtube.com/watch?v=UI1JKEqD2ns&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🗺️</div>
+          <div class="body">
+            <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span><span class="chip">RCA</span></div>
+            <h3>AI in Observability: Mapping Root Causes with Precision</h3>
+            <div class="links">
+              <a href="https://www.youtube.com/watch?v=IaMEhhODwMw" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🪵</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Demo</span><span class="chip">Logs</span><span class="chip">AI</span></div>
+            <h3>Logz.io AI-Powered Log Management Demo</h3>
+            <div class="links">
+              <a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="footer">
-        <div>© <span id="year"></span> Jade Luiza Lassery</div>
-        <div class="muted">Built as a single-file site (perfect for GitHub Pages).</div>
+    <!-- COMMUNITY -->
+    <section id="community" class="sec-community">
+      <div class="section-head">
+        <h2 class="section-title">
+          <span class="badge"><span class="ico">☁️</span> Community & Open Source</span>
+        </h2>
+        <p class="hint">Organizer roles + public recaps.</p>
+      </div>
+
+      <div class="list">
+        <div class="item">
+          <div class="left">📍</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Founder</span><span class="chip">Organizer</span><span class="chip">Spain</span></div>
+            <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
+            <div class="links">
+              <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🇧🇷</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">Marketing</span><span class="chip">Brazil</span></div>
+            <h3>Lead Organizer & Marketing Manager | Kubernetes Community Days, Brazil</h3>
+            <div class="links">
+              <a href="https://www.flickr.com/photos/200174086@N02/albums/72177720315153520/" target="_blank" rel="noopener">Photos <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">🎤</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">KCD 2024</span><span class="chip">Talk</span></div>
+            <h3>Lead Organizer | Kubernetes Community Days 2024, Brazil</h3>
+            <div class="links">
+              <a href="https://www.youtube.com/watch?v=P4gj--tq-wU" target="_blank" rel="noopener">Watch <span>↗</span></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="left">📷</div>
+          <div class="body">
+            <div class="meta"><span class="chip">Gallery</span><span class="chip">Meetups</span></div>
+            <h3>Cloud Native Valencia — photo gallery</h3>
+            <div class="links">
+              <a href="https://www.flickr.com/photos/cloudnativevalencia/" target="_blank" rel="noopener">Browse <span>↗</span></a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <script>
-    // Update year automatically
-    document.getElementById("year").textContent = new Date().getFullYear();
-
     // Smooth scrolling for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
