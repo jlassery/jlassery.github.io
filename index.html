@@ -106,13 +106,38 @@
     }
     .hero{padding:22px 0 10px}
     .hero-main{padding:20px 20px 18px}
+
+    /* ✅ Unify hero into one composed block (copy + actions+highlights) */
+    .hero-inner{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .hero-inner{grid-template-columns: 1fr;}
+    }
+
     .hero-sub{
       color:var(--muted);
       font-size:16px;line-height:1.7;
-      margin:0 0 14px;
-      max-width:76ch;
+      margin:0;
+      max-width:none;
     }
-    .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+
+    .hero-side{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-top:2px;
+    }
 
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:10px;
@@ -129,12 +154,49 @@
     }
     .btn.small{padding:9px 12px;border-radius:12px;font-size:13px;font-weight:650}
 
-    .highlights{
-      margin:14px 0 0;
-      font-size:14px;
-      line-height:1.6;
-      max-width:76ch;
+    /* ✅ Icon-only LinkedIn/Email */
+    .icon-btn{
+      width:44px;
+      height:44px;
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .icon-btn:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.24);
+    }
+    .icon-btn svg{
+      width:20px;
+      height:20px;
+      fill:rgba(255,255,255,.9);
+    }
+
+    /* ✅ Highlights as a sub-panel inside the same hero block */
+    .highlights-box{
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      padding:12px 12px 12px;
+    }
+    .highlights-title{
+      font-size:12px;
+      letter-spacing:.35px;
+      text-transform:uppercase;
       color:var(--muted);
+      margin:0 0 6px;
+      font-weight:800;
+    }
+    .highlights-text{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+      margin:0;
     }
 
     /* Section headers: gradient pill + emoji (only here) */
@@ -270,19 +332,39 @@
     <!-- HERO -->
     <div class="hero">
       <div class="card hero-main">
-        <p class="hero-sub">
-          I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
-        </p>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <p class="hero-sub">
+              I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
+            </p>
+          </div>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="mailto:jadellassery@gmail.com">Email</a>
-          <a class="btn small" href="#featured">Jump to featured work →</a>
+          <div class="hero-side">
+            <div class="hero-actions">
+              <a class="icon-btn" href="https://www.linkedin.com/in/jadelassery/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 23.5h4V7.98h-4V23.5zM8 7.98h3.83v2.12h.05c.53-1.01 1.83-2.08 3.77-2.08 4.03 0 4.77 2.65 4.77 6.1v9.38h-4v-8.31c0-1.98-.04-4.53-2.76-4.53-2.76 0-3.18 2.16-3.18 4.39v8.45H8V7.98z"/>
+                </svg>
+              </a>
+
+              <a class="icon-btn" href="mailto:jadellassery@gmail.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+              </a>
+
+              <a class="btn small" href="#featured">Jump to featured work →</a>
+            </div>
+
+            <div class="highlights-box">
+              <div class="highlights-title">Highlights</div>
+              <p class="highlights-text">
+                OpenTelemetry and Observability quickstarts, migration stories, observability AI agents,
+                Kubernetes implementations, and open source &amp; Cloud Native communities and events.
+              </p>
+            </div>
+          </div>
         </div>
-
-        <p class="highlights">
-          <b>Highlights:</b> OpenTelemetry and Observability quickstarts, migration stories, observability AI agents, Kubernetes implementations, and open source & Cloud Native communities and events.
-        </p>
       </div>
     </div>
 
@@ -355,7 +437,6 @@
         </div>
 
         <div class="badge-card">
-          <!-- If this filename differs, update it to match your folder exactly -->
           <img src="images/otca-opentelemetry-certified-associate.png" alt="OpenTelemetry Certified Associate (OTCA)" />
         </div>
 
@@ -368,7 +449,6 @@
         </div>
 
         <div class="badge-card">
-          <!-- If this filename differs, update it to match your folder exactly -->
           <img src="images/code-certified-open-source-developer.png" alt="Code Certified Open Source Developer" />
         </div>
       </div>
@@ -396,95 +476,59 @@
           </div>
         </div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span></div>
-            <h3>Making Observability AI-Native with the Logz.io MCP Server</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/logz-mcp-server/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span></div>
+          <h3>Making Observability AI-Native with the Logz.io MCP Server</h3>
+          <div class="links"><a href="https://logz.io/blog/logz-mcp-server/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Logs</span><span class="chip">Open source</span></div>
-            <h3>Top 5 Open Source Log Management Tools (and How to Choose the Right One)</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/top-open-source-log-management-tools/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Logs</span><span class="chip">Open source</span></div>
+          <h3>Top 5 Open Source Log Management Tools (and How to Choose the Right One)</h3>
+          <div class="links"><a href="https://logz.io/blog/top-open-source-log-management-tools/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span></div>
-            <h3>Logz.io AI Agents: Transforming Observability Through Intelligent Automation</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/transforming-observability-through-intelligent-automation/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AI</span><span class="chip">Automation</span><span class="chip">Observability</span></div>
+          <h3>Logz.io AI Agents: Transforming Observability Through Intelligent Automation</h3>
+          <div class="links"><a href="https://logz.io/blog/transforming-observability-through-intelligent-automation/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span></div>
-            <h3>Logz.io Integration for AWS and Kubernetes Observability</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/observability-for-aws-native-monitoring/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AWS</span><span class="chip">Kubernetes</span><span class="chip">Observability</span></div>
+          <h3>Logz.io Integration for AWS and Kubernetes Observability</h3>
+          <div class="links"><a href="https://logz.io/blog/observability-for-aws-native-monitoring/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AI</span><span class="chip">Productivity</span></div>
-            <h3>AI Agents: Your data sidekick (minus the coffee breaks)</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/ai-agents-your-data-sidekick-minus-the-coffee-breaks/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AI</span><span class="chip">Productivity</span></div>
+          <h3>AI Agents: Your data sidekick (minus the coffee breaks)</h3>
+          <div class="links"><a href="https://logz.io/blog/ai-agents-your-data-sidekick-minus-the-coffee-breaks/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span></div>
-            <h3>The 8 Hidden Pitfalls of Using AWS CloudWatch</h3>
-            <div class="links">
-              <a href="https://logz.io/blog/aws-cloudwatch-pitfalls/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AWS</span><span class="chip">CloudWatch</span><span class="chip">Pitfalls</span></div>
+          <h3>The 8 Hidden Pitfalls of Using AWS CloudWatch</h3>
+          <div class="links"><a href="https://logz.io/blog/aws-cloudwatch-pitfalls/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span></div>
-            <h3>How to monitor OpenShift using the Datadog Operator</h3>
-            <div class="links">
-              <a href="https://developers.redhat.com/articles/2024/04/16/how-monitor-openshift-using-datadog-operator" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">OpenShift</span><span class="chip">Datadog</span><span class="chip">Operator</span></div>
+          <h3>How to monitor OpenShift using the Datadog Operator</h3>
+          <div class="links"><a href="https://developers.redhat.com/articles/2024/04/16/how-monitor-openshift-using-datadog-operator" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span></div>
-            <h3>Migrating from DIY ELK to a full SaaS platform</h3>
-            <div class="links">
-              <a href="https://www.cncf.io/blog/2025/01/24/migrating-from-diy-elk-to-a-full-saas-platform/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Migration</span><span class="chip">ELK</span><span class="chip">SaaS</span></div>
+          <h3>Migrating from DIY ELK to a full SaaS platform</h3>
+          <div class="links"><a href="https://www.cncf.io/blog/2025/01/24/migrating-from-diy-elk-to-a-full-saas-platform/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span></div>
-            <h3>Reimagining log management tools and software: The impact of AI and GenAI</h3>
-            <div class="links">
-              <a href="https://www.cncf.io/blog/2025/03/24/reimagining-log-management-tools-and-software-the-impact-of-ai-and-genai/" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AI</span><span class="chip">GenAI</span><span class="chip">Logs</span></div>
+          <h3>Reimagining log management tools and software: The impact of AI and GenAI</h3>
+          <div class="links"><a href="https://www.cncf.io/blog/2025/03/24/reimagining-log-management-tools-and-software-the-impact-of-ai-and-genai/" target="_blank" rel="noopener">Read <span>↗</span></a></div>
+        </div></div>
       </div>
     </section>
 
@@ -498,65 +542,41 @@
       </div>
 
       <div class="list">
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Short</span><span class="chip">Kubernetes</span><span class="chip">AI</span></div>
-            <h3>Troubleshoot Kubernetes Performance Issues with AI</h3>
-            <div class="links">
-              <a href="https://youtube.com/shorts/xpS3blofCsU?si=qzwoCm-p4lFR94ue" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Short</span><span class="chip">Kubernetes</span><span class="chip">AI</span></div>
+          <h3>Troubleshoot Kubernetes Performance Issues with AI</h3>
+          <div class="links"><a href="https://youtube.com/shorts/xpS3blofCsU?si=qzwoCm-p4lFR94ue" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Short</span><span class="chip">Cost</span><span class="chip">AI</span></div>
-            <h3>Optimizing Observability Data Volume and Cost with AI</h3>
-            <div class="links">
-              <a href="https://youtube.com/shorts/sWGS9shpdvE?si=_jjmvOezDu2vvedB" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Short</span><span class="chip">Cost</span><span class="chip">AI</span></div>
+          <h3>Optimizing Observability Data Volume and Cost with AI</h3>
+          <div class="links"><a href="https://youtube.com/shorts/sWGS9shpdvE?si=_jjmvOezDu2vvedB" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Short</span><span class="chip">RCA</span><span class="chip">AI Agent</span></div>
-            <h3>Finding Root Cause Quickly with Logz.io AI Agent</h3>
-            <div class="links">
-              <a href="https://youtube.com/shorts/UQrcO9e2rk8?si=6XBCfk50YqBm9dcY" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Short</span><span class="chip">RCA</span><span class="chip">AI Agent</span></div>
+          <h3>Finding Root Cause Quickly with Logz.io AI Agent</h3>
+          <div class="links"><a href="https://youtube.com/shorts/UQrcO9e2rk8?si=6XBCfk50YqBm9dcY" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Demo</span><span class="chip">Platform</span></div>
-            <h3>Logz.io Open 360 Platform Overview Demo</h3>
-            <div class="links">
-              <a href="https://www.youtube.com/watch?v=UI1JKEqD2ns&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Demo</span><span class="chip">Platform</span></div>
+          <h3>Logz.io Open 360 Platform Overview Demo</h3>
+          <div class="links"><a href="https://www.youtube.com/watch?v=UI1JKEqD2ns&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span><span class="chip">RCA</span></div>
-            <h3>AI in Observability: Mapping Root Causes with Precision</h3>
-            <div class="links">
-              <a href="https://www.youtube.com/watch?v=IaMEhhODwMw" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">AI</span><span class="chip">Observability</span><span class="chip">RCA</span></div>
+          <h3>AI in Observability: Mapping Root Causes with Precision</h3>
+          <div class="links"><a href="https://www.youtube.com/watch?v=IaMEhhODwMw" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Demo</span><span class="chip">Logs</span><span class="chip">AI</span></div>
-            <h3>Logz.io AI-Powered Log Management Demo</h3>
-            <div class="links">
-              <a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Demo</span><span class="chip">Logs</span><span class="chip">AI</span></div>
+          <h3>Logz.io AI-Powered Log Management Demo</h3>
+          <div class="links"><a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
       </div>
     </section>
 
@@ -570,36 +590,26 @@
       </div>
 
       <div class="list">
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Founder</span><span class="chip">Organizer</span><span class="chip">Spain</span></div>
-            <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
-            <div class="links">
-              <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
-              <a href="https://www.flickr.com/photos/cloudnativevalencia/" target="_blank" rel="noopener">Photos <span>↗</span></a>
-            </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Founder</span><span class="chip">Organizer</span><span class="chip">Spain</span></div>
+          <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
+          <div class="links">
+            <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
+            <a href="https://www.flickr.com/photos/cloudnativevalencia/" target="_blank" rel="noopener">Photos <span>↗</span></a>
           </div>
-        </div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">Marketing</span><span class="chip">Brazil</span></div>
-            <h3>Lead Organizer & Marketing Manager | Kubernetes Community Days, Brazil</h3>
-            <div class="links">
-              <a href="https://www.flickr.com/photos/200174086@N02/albums/72177720315153520/" target="_blank" rel="noopener">Photos <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">Marketing</span><span class="chip">Brazil</span></div>
+          <h3>Lead Organizer & Marketing Manager | Kubernetes Community Days, Brazil</h3>
+          <div class="links"><a href="https://www.flickr.com/photos/200174086@N02/albums/72177720315153520/" target="_blank" rel="noopener">Photos <span>↗</span></a></div>
+        </div></div>
 
-        <div class="item">
-          <div class="body">
-            <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">KCD 2024</span><span class="chip">Video</span></div>
-            <h3>Lead Organizer | Kubernetes Community Days 2024, Brazil</h3>
-            <div class="links">
-              <a href="https://www.youtube.com/watch?v=P4gj--tq-wU" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
-          </div>
-        </div>
+        <div class="item"><div class="body">
+          <div class="meta"><span class="chip">Lead Organizer</span><span class="chip">KCD 2024</span><span class="chip">Video</span></div>
+          <h3>Lead Organizer | Kubernetes Community Days 2024, Brazil</h3>
+          <div class="links"><a href="https://www.youtube.com/watch?v=P4gj--tq-wU" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
+        </div></div>
       </div>
     </section>
   </main>
