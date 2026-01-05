@@ -23,11 +23,11 @@
       --radius: 18px;
       --max: 1120px;
 
-      /* Brighter list items (your request) */
-      --item-bg: rgba(255,255,255,.045);
-      --item-bg-hover: rgba(255,255,255,.065);
-      --item-border: rgba(255,255,255,.10);
-      --item-border-hover: rgba(255,255,255,.14);
+      /* Brighter list items */
+      --item-bg: rgba(255,255,255,.050);
+      --item-bg-hover: rgba(255,255,255,.075);
+      --item-border: rgba(255,255,255,.12);
+      --item-border-hover: rgba(255,255,255,.18);
 
       --chip-bg: rgba(255,255,255,.07);
       --chip-border: rgba(255,255,255,.10);
@@ -62,39 +62,96 @@
       max-width:var(--max);
       margin:0 auto;
       padding:14px 18px;
-      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:16px;
     }
-    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    /* make your photo a bit bigger (you asked earlier) */
     .avatar{
-      width:60px;height:60px;border-radius:20px;
+      width:84px;height:84px;border-radius:26px;
       object-fit:cover;
       box-shadow: var(--shadow);
       flex:0 0 auto;
       border:1px solid rgba(255,255,255,.10);
     }
-    .brand h1{font-size:22px;letter-spacing:-.2px;margin:0;font-weight:750;line-height:1.05}
-    .brand small{
-      display:block;
-      color:var(--muted);
-      font-size:14px;
-      margin-top:4px;
-      line-height:1.35;
-      max-width:70ch;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      white-space:nowrap;
+
+    .brand h1{
+      font-size:24px;
+      letter-spacing:-.2px;
+      margin:0;
+      font-weight:780;
+      line-height:1.05
     }
 
-    .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    /* ✅ Roles: gradient text, NOT bold, wrapped nicely */
+    .roles{
+      margin-top:6px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:center;
+      max-width:78ch;
+    }
+    .role{
+      font-size:14px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:500; /* not bold */
+      color:transparent;
+      background-image: linear-gradient(90deg, rgba(124,92,255,1), rgba(56,189,248,1));
+      -webkit-background-clip:text;
+      background-clip:text;
+      white-space:nowrap;
+    }
+    .sep{
+      width:4px;height:4px;border-radius:99px;
+      background:rgba(255,255,255,.26);
+      display:inline-block;
+      transform: translateY(-1px);
+    }
+
+    /* ✅ “What you’ll find” nav: no longer broken, wraps cleanly */
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      align-items:center;
+      max-width:520px;
+    }
     .nav a{
-      font-size:13px;color:var(--muted);
-      padding:8px 10px;border-radius:999px;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
       border:1px solid transparent;
+      background:transparent;
+      white-space:nowrap;
     }
     .nav a:hover{
       color:var(--text);
       border-color:rgba(255,255,255,.12);
       background:rgba(255,255,255,.03)
+    }
+
+    @media (max-width: 860px){
+      .topbar-inner{flex-direction:column; align-items:flex-start}
+      .nav{justify-content:flex-start; max-width:none}
+      .roles{max-width:none}
+    }
+    @media (max-width: 520px){
+      .avatar{width:64px;height:64px;border-radius:22px}
+      .brand h1{font-size:22px}
+      .roles{gap:8px 12px}
+      .role{letter-spacing:.14em;font-size:13px}
     }
 
     /* Hero */
@@ -105,9 +162,20 @@
       box-shadow: var(--shadow);
     }
     .hero{padding:22px 0 10px}
-    .hero-main{padding:20px 20px 18px}
 
-    /* ✅ Unify hero into one composed block (copy + actions+highlights) */
+    /* ✅ Highlight bio section more (subtle glow + stronger border) */
+    .hero-main{
+      padding:20px 20px 18px;
+      position:relative;
+      overflow:hidden;
+      border-color: rgba(255,255,255,.12);
+      background:
+        radial-gradient(900px 240px at 12% 0%, rgba(124,92,255,.18) 0%, rgba(0,0,0,0) 60%),
+        radial-gradient(900px 260px at 90% 10%, rgba(56,189,248,.14) 0%, rgba(0,0,0,0) 60%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+    }
+
+    /* Unify hero into one composed block */
     .hero-inner{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -120,7 +188,8 @@
 
     .hero-sub{
       color:var(--muted);
-      font-size:16px;line-height:1.7;
+      font-size:16px;
+      line-height:1.7;
       margin:0;
       max-width:none;
     }
@@ -128,7 +197,7 @@
     .hero-side{
       display:flex;
       flex-direction:column;
-      gap:14px;
+      gap:12px;
     }
 
     .hero-actions{
@@ -148,13 +217,9 @@
       font-weight:650;font-size:14px;
     }
     .btn:hover{background:rgba(255,255,255,.06)}
-    .btn.primary{
-      border-color:rgba(124,92,255,.45);
-      background:linear-gradient(135deg, rgba(124,92,255,.28), rgba(56,189,248,.14));
-    }
     .btn.small{padding:9px 12px;border-radius:12px;font-size:13px;font-weight:650}
 
-    /* ✅ Icon-only LinkedIn/Email */
+    /* Icon-only LinkedIn/Email */
     .icon-btn{
       width:44px;
       height:44px;
@@ -177,7 +242,44 @@
       fill:rgba(255,255,255,.9);
     }
 
-    /* ✅ Highlights as a sub-panel inside the same hero block */
+    /* ✅ Badges “living free” under the bio (medium size, not huge or tiny) */
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px; /* sits right below bio text */
+      align-items:center;
+    }
+    .hero-badge{
+      width:52px;
+      height:52px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.035);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      overflow:hidden;
+    }
+    .hero-badge:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.065);
+      border-color: rgba(255,255,255,.18);
+    }
+    .hero-badge img{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      display:block;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
+    }
+    @media (max-width: 520px){
+      .hero-badge{width:48px;height:48px;border-radius:14px}
+      .hero-badge img{width:36px;height:36px}
+    }
+
+    /* Highlights box */
     .highlights-box{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
@@ -227,14 +329,9 @@
     .sec-blogs    .badge{background:linear-gradient(90deg, rgba(34,197,94,.48), rgba(56,189,248,.40))}
     .sec-videos   .badge{background:linear-gradient(90deg, rgba(124,92,255,.55), rgba(56,189,248,.45))}
     .sec-community .badge{background:linear-gradient(90deg, rgba(56,189,248,.45), rgba(168,85,247,.42))}
-    .sec-badges   .badge{background:linear-gradient(90deg, rgba(245,158,11,.45), rgba(56,189,248,.35))}
 
     /* Compact list items */
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+    .list{display:flex;flex-direction:column;gap:10px;}
     .item{
       display:flex;
       gap:12px;
@@ -272,37 +369,8 @@
     .links a{font-size:13px;font-weight:780}
     .links a span{color:var(--muted);font-weight:780}
 
-    /* Badges grid */
-    .badges-grid{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap:14px;
-    }
-    @media (max-width: 900px){ .badges-grid{grid-template-columns: repeat(2, minmax(0, 1fr));} }
-    @media (max-width: 520px){ .badges-grid{grid-template-columns: 1fr;} }
-
-    .badge-card{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:16px;
-      border-radius:16px;
-      border:1px solid var(--item-border);
-      background:var(--item-bg);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .badge-card:hover{
-      transform: translateY(-1px);
-      background:var(--item-bg-hover);
-      border-color: var(--item-border-hover);
-    }
-    .badge-card img{
-      width:140px;
-      height:auto;
-      display:block;
-      filter: drop-shadow(0 10px 20px rgba(0,0,0,.35));
-    }
-
+    /* remove badges section spacing if still present */
+    #badges{display:none;}
     .muted{color:var(--muted)}
   </style>
 </head>
@@ -314,13 +382,20 @@
         <img src="images/WhatsApp Image 2026-01-04 at 21.40.34.jpeg" alt="Jade Luiza Lassery" class="avatar" />
         <div>
           <h1>Jade Luiza Lassery</h1>
-          <small>Technical Product Engineer • Observability • Cloud Native Specialist • Open source & Community builder</small>
+
+          <!-- ✅ roles fixed + gradient, not bold -->
+          <div class="roles" aria-label="Roles">
+            <span class="role">Technical Product Engineer</span><span class="sep" aria-hidden="true"></span>
+            <span class="role">Observability</span><span class="sep" aria-hidden="true"></span>
+            <span class="role">Cloud Native Specialist</span><span class="sep" aria-hidden="true"></span>
+            <span class="role">Open source &amp; Community builder</span>
+          </div>
         </div>
       </a>
 
+      <!-- ✅ nav fixed (removed Badges) -->
       <nav class="nav" aria-label="Primary">
         <a href="#featured">Featured</a>
-        <a href="#badges">Badges</a>
         <a href="#blogs">Blogs</a>
         <a href="#videos">Videos</a>
         <a href="#community">Community</a>
@@ -337,6 +412,25 @@
             <p class="hero-sub">
               I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
             </p>
+
+            <!-- ✅ badges living under the bio (medium size) -->
+            <div class="hero-badges" aria-label="Badges">
+              <a class="hero-badge" href="#" aria-label="KCNA">
+                <img src="images/kcna-kubernetes-and-cloud-native-associate.png" alt="KCNA badge" />
+              </a>
+              <a class="hero-badge" href="#" aria-label="OTCA">
+                <img src="images/otca-opentelemetry-certified-associate.png" alt="OTCA badge" />
+              </a>
+              <a class="hero-badge" href="#" aria-label="Organizer 2024">
+                <img src="images/organizer-2024-kcd.png" alt="Organizer 2024 badge" />
+              </a>
+              <a class="hero-badge" href="#" aria-label="CNCF Ambassador">
+                <img src="images/cncf-ambassador-2025-2027.png" alt="CNCF Ambassador badge" />
+              </a>
+              <a class="hero-badge" href="#" aria-label="Code Certified OSS Developer">
+                <img src="images/code-certified-open-source-developer-for-enterprise.png" alt="Code Certified Open Source Developer badge" />
+              </a>
+            </div>
           </div>
 
           <div class="hero-side">
@@ -418,38 +512,6 @@
               <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BADGES -->
-    <section id="badges" class="sec-badges">
-      <div class="section-head">
-        <h2 class="section-title">
-          <span class="badge"><span class="ico">🏅</span> Badges</span>
-        </h2>
-        <p class="hint">Certifications and community recognition.</p>
-      </div>
-
-      <div class="badges-grid">
-        <div class="badge-card">
-          <img src="images/kcna-kubernetes-and-cloud-native-associate.png" alt="Kubernetes and Cloud Native Associate (KCNA)" />
-        </div>
-
-        <div class="badge-card">
-          <img src="images/otca-opentelemetry-certified-associate.png" alt="OpenTelemetry Certified Associate (OTCA)" />
-        </div>
-
-        <div class="badge-card">
-          <img src="images/organizer-2024-kcd.png" alt="Kubernetes Community Days Organizer 2024" />
-        </div>
-
-        <div class="badge-card">
-          <img src="images/cncf-ambassador-2025-2027.png" alt="CNCF Ambassador 2025–2027" />
-        </div>
-
-        <div class="badge-card">
-          <img src="images/code-certified-open-source-developer.png" alt="Code Certified Open Source Developer" />
         </div>
       </div>
     </section>
