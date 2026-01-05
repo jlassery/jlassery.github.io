@@ -23,7 +23,6 @@
       --radius: 18px;
       --max: 1120px;
 
-      /* Brighter list items */
       --item-bg: rgba(255,255,255,.050);
       --item-bg-hover: rgba(255,255,255,.075);
       --item-border: rgba(255,255,255,.12);
@@ -63,7 +62,7 @@
       margin:0 auto;
       padding:14px 18px;
       display:flex;
-      align-items:flex-start;
+      align-items:center;
       justify-content:space-between;
       gap:16px;
     }
@@ -73,10 +72,10 @@
       align-items:center;
       gap:12px;
       min-width:0;
+      flex: 1 1 auto;
     }
-    /* make your photo a bit bigger (you asked earlier) */
     .avatar{
-      width:84px;height:84px;border-radius:26px;
+      width:78px;height:78px;border-radius:26px;
       object-fit:cover;
       box-shadow: var(--shadow);
       flex:0 0 auto;
@@ -91,20 +90,20 @@
       line-height:1.05
     }
 
-    /* ✅ Roles: gradient text, NOT bold, wrapped nicely */
+    /* ✅ Roles: force one single line (truncate if needed) */
     .roles{
       margin-top:6px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px 14px;
-      align-items:center;
+      display:block;
       max-width:78ch;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
     }
     .role{
-      font-size:14px;
-      letter-spacing:.18em;
+      font-size:12.5px;              /* smaller so it fits */
+      letter-spacing:.14em;
       text-transform:uppercase;
-      font-weight:500; /* not bold */
+      font-weight:500;               /* not bold */
       color:transparent;
       background-image: linear-gradient(90deg, rgba(124,92,255,1), rgba(56,189,248,1));
       -webkit-background-clip:text;
@@ -115,43 +114,47 @@
       width:4px;height:4px;border-radius:99px;
       background:rgba(255,255,255,.26);
       display:inline-block;
-      transform: translateY(-1px);
+      margin:0 10px;
+      transform: translateY(-2px);
     }
 
-    /* ✅ “What you’ll find” nav: no longer broken, wraps cleanly */
+    /* ✅ Center nav in the top bar (like your screenshot) */
     .nav{
       display:flex;
-      gap:10px;
+      gap:28px;
       flex-wrap:wrap;
-      justify-content:flex-end;
+      justify-content:center;
       align-items:center;
-      max-width:520px;
+      flex: 0 0 auto;
+      min-width: 320px;
     }
     .nav a{
-      font-size:13px;
+      font-size:20px;
       color:var(--muted);
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
+      padding:6px 0;
+      border-radius:0;
+      border:none;
       background:transparent;
       white-space:nowrap;
     }
     .nav a:hover{
       color:var(--text);
-      border-color:rgba(255,255,255,.12);
-      background:rgba(255,255,255,.03)
+      opacity:1;
+      text-decoration: none;
     }
 
+    /* Keep layout stable on smaller screens */
     @media (max-width: 860px){
       .topbar-inner{flex-direction:column; align-items:flex-start}
-      .nav{justify-content:flex-start; max-width:none}
+      .nav{justify-content:flex-start; gap:18px; min-width:0}
       .roles{max-width:none}
     }
     @media (max-width: 520px){
       .avatar{width:64px;height:64px;border-radius:22px}
       .brand h1{font-size:22px}
-      .roles{gap:8px 12px}
-      .role{letter-spacing:.14em;font-size:13px}
+      .role{letter-spacing:.12em;font-size:12px}
+      .sep{margin:0 8px}
+      .nav a{font-size:18px}
     }
 
     /* Hero */
@@ -163,11 +166,9 @@
     }
     .hero{padding:22px 0 10px}
 
-    /* ✅ Highlight bio section more (subtle glow + stronger border) */
+    /* Highlight bio */
     .hero-main{
       padding:20px 20px 18px;
-      position:relative;
-      overflow:hidden;
       border-color: rgba(255,255,255,.12);
       background:
         radial-gradient(900px 240px at 12% 0%, rgba(124,92,255,.18) 0%, rgba(0,0,0,0) 60%),
@@ -175,7 +176,6 @@
         linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
     }
 
-    /* Unify hero into one composed block */
     .hero-inner{
       display:grid;
       grid-template-columns: 1.25fr .75fr;
@@ -191,7 +191,6 @@
       font-size:16px;
       line-height:1.7;
       margin:0;
-      max-width:none;
     }
 
     .hero-side{
@@ -219,14 +218,9 @@
     .btn:hover{background:rgba(255,255,255,.06)}
     .btn.small{padding:9px 12px;border-radius:12px;font-size:13px;font-weight:650}
 
-    /* Icon-only LinkedIn/Email */
     .icon-btn{
-      width:44px;
-      height:44px;
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      width:44px;height:44px;border-radius:999px;
+      display:inline-flex;align-items:center;justify-content:center;
       border:1px solid rgba(255,255,255,.14);
       background:rgba(255,255,255,.04);
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
@@ -236,55 +230,49 @@
       background:rgba(255,255,255,.08);
       border-color: rgba(255,255,255,.24);
     }
-    .icon-btn svg{
-      width:20px;
-      height:20px;
-      fill:rgba(255,255,255,.9);
-    }
+    .icon-btn svg{width:20px;height:20px;fill:rgba(255,255,255,.9);}
 
-    /* ✅ Badges “living free” under the bio (medium size, not huge or tiny) */
+    /* ✅ Badge icons: bigger + no background square */
     .hero-badges{
       display:flex;
       flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px; /* sits right below bio text */
+      gap:14px;
+      margin-top:12px;
       align-items:center;
     }
     .hero-badge{
-      width:52px;
-      height:52px;
-      border-radius:14px;
-      display:flex;
+      display:inline-flex;
       align-items:center;
       justify-content:center;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.035);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      overflow:hidden;
+      width:auto;
+      height:auto;
+      border:none;
+      background:transparent;
+      padding:0;
+      border-radius:0;
+      transition: transform .12s ease, filter .12s ease;
     }
     .hero-badge:hover{
       transform: translateY(-1px);
-      background:rgba(255,255,255,.065);
-      border-color: rgba(255,255,255,.18);
+      filter: brightness(1.05);
     }
     .hero-badge img{
-      width:40px;
-      height:40px;
-      object-fit:contain;
+      width:70px;   /* bigger */
+      height:auto;
       display:block;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.28));
+      object-fit:contain;
+      filter: drop-shadow(0 12px 22px rgba(0,0,0,.35));
     }
     @media (max-width: 520px){
-      .hero-badge{width:48px;height:48px;border-radius:14px}
-      .hero-badge img{width:36px;height:36px}
+      .hero-badge img{width:60px;}
+      .hero-badges{gap:12px;}
     }
 
-    /* Highlights box */
     .highlights-box{
       border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
       background:rgba(255,255,255,.04);
-      padding:12px 12px 12px;
+      padding:12px;
     }
     .highlights-title{
       font-size:12px;
@@ -301,7 +289,7 @@
       margin:0;
     }
 
-    /* Section headers: gradient pill + emoji (only here) */
+    /* Sections */
     section{padding:22px 0 0}
     .section-head{
       display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
@@ -330,14 +318,10 @@
     .sec-videos   .badge{background:linear-gradient(90deg, rgba(124,92,255,.55), rgba(56,189,248,.45))}
     .sec-community .badge{background:linear-gradient(90deg, rgba(56,189,248,.45), rgba(168,85,247,.42))}
 
-    /* Compact list items */
     .list{display:flex;flex-direction:column;gap:10px;}
     .item{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:12px 14px;
-      border-radius:16px;
+      display:flex;gap:12px;align-items:flex-start;
+      padding:12px 14px;border-radius:16px;
       border:1px solid var(--item-border);
       background:var(--item-bg);
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
@@ -348,17 +332,9 @@
       border-color: var(--item-border-hover);
     }
     .item .body{min-width:0}
-    .item h3{
-      margin:0 0 6px;
-      font-size:15px;
-      letter-spacing:-.15px;
-      line-height:1.25;
-    }
+    .item h3{margin:0 0 6px;font-size:15px;letter-spacing:-.15px;line-height:1.25}
 
-    .meta{
-      display:flex;gap:8px;flex-wrap:wrap;align-items:center;
-      margin:0 0 6px;
-    }
+    .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 6px;}
     .chip{
       font-size:12px;color:var(--muted);
       padding:6px 9px;border-radius:999px;
@@ -368,10 +344,6 @@
     .links{display:flex;gap:12px;flex-wrap:wrap}
     .links a{font-size:13px;font-weight:780}
     .links a span{color:var(--muted);font-weight:780}
-
-    /* remove badges section spacing if still present */
-    #badges{display:none;}
-    .muted{color:var(--muted)}
   </style>
 </head>
 
@@ -383,7 +355,7 @@
         <div>
           <h1>Jade Luiza Lassery</h1>
 
-          <!-- ✅ roles fixed + gradient, not bold -->
+          <!-- roles forced into one line -->
           <div class="roles" aria-label="Roles">
             <span class="role">Technical Product Engineer</span><span class="sep" aria-hidden="true"></span>
             <span class="role">Observability</span><span class="sep" aria-hidden="true"></span>
@@ -393,7 +365,7 @@
         </div>
       </a>
 
-      <!-- ✅ nav fixed (removed Badges) -->
+      <!-- nav centered at the top -->
       <nav class="nav" aria-label="Primary">
         <a href="#featured">Featured</a>
         <a href="#blogs">Blogs</a>
@@ -413,7 +385,7 @@
               I create cool things around the Cloud Native ecosystem, with a strong background in open source technologies and culture, open communities, and modern cloud infrastructure. My expertise spans Kubernetes, DevOps, observability, SaaS/PaaS platforms, and application modernization.
             </p>
 
-            <!-- ✅ badges living under the bio (medium size) -->
+            <!-- badge icons: bigger + no background -->
             <div class="hero-badges" aria-label="Badges">
               <a class="hero-badge" href="#" aria-label="KCNA">
                 <img src="images/kcna-kubernetes-and-cloud-native-associate.png" alt="KCNA badge" />
@@ -428,7 +400,7 @@
                 <img src="images/cncf-ambassador-2025-2027.png" alt="CNCF Ambassador badge" />
               </a>
               <a class="hero-badge" href="#" aria-label="Code Certified OSS Developer">
-                <img src="images/code-certified-open-source-developer-for-enterprise.png" alt="Code Certified Open Source Developer badge" />
+                <img src="images/code-certified-open-source-developer.png" alt="Code Certified Open Source Developer badge" />
               </a>
             </div>
           </div>
@@ -465,52 +437,32 @@
     <!-- FEATURED -->
     <section id="featured" class="sec-featured">
       <div class="section-head">
-        <h2 class="section-title">
-          <span class="badge"><span class="ico">⭐</span> Featured</span>
-        </h2>
+        <h2 class="section-title"><span class="badge"><span class="ico">⭐</span> Featured</span></h2>
         <p class="hint">Your top picks for a quick recruiter skim.</p>
       </div>
 
       <div class="list">
         <div class="item">
           <div class="body">
-            <div class="meta">
-              <span class="chip">Kubernetes</span>
-              <span class="chip">Observability</span>
-              <span class="chip">2025 Trends</span>
-            </div>
+            <div class="meta"><span class="chip">Kubernetes</span><span class="chip">Observability</span><span class="chip">2025 Trends</span></div>
             <h3>Modern Kubernetes monitoring: Metrics, tools, and AIOps</h3>
-            <div class="links">
-              <a href="https://developers.redhat.com/articles/2025/12/17/modern-kubernetes-monitoring-metrics-tools-and-aiops" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
+            <div class="links"><a href="https://developers.redhat.com/articles/2025/12/17/modern-kubernetes-monitoring-metrics-tools-and-aiops" target="_blank" rel="noopener">Read <span>↗</span></a></div>
           </div>
         </div>
 
         <div class="item">
           <div class="body">
-            <div class="meta">
-              <span class="chip">AI</span>
-              <span class="chip">Logs</span>
-              <span class="chip">Demo</span>
-            </div>
+            <div class="meta"><span class="chip">AI</span><span class="chip">Logs</span><span class="chip">Demo</span></div>
             <h3>Logz.io AI-Powered Log Management Demo</h3>
-            <div class="links">
-              <a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a>
-            </div>
+            <div class="links"><a href="https://www.youtube.com/watch?v=_QG7eOIW1t0&t=1s" target="_blank" rel="noopener">Watch <span>↗</span></a></div>
           </div>
         </div>
 
         <div class="item">
           <div class="body">
-            <div class="meta">
-              <span class="chip">Organizer</span>
-              <span class="chip">CNCF</span>
-              <span class="chip">Community</span>
-            </div>
+            <div class="meta"><span class="chip">Organizer</span><span class="chip">CNCF</span><span class="chip">Community</span></div>
             <h3>Founder & Organizer | Cloud Native Valencia, Spain</h3>
-            <div class="links">
-              <a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a>
-            </div>
+            <div class="links"><a href="https://cloudnativevalencia.carrd.co/" target="_blank" rel="noopener">Visit <span>↗</span></a></div>
           </div>
         </div>
       </div>
@@ -519,22 +471,16 @@
     <!-- BLOGS -->
     <section id="blogs" class="sec-blogs">
       <div class="section-head">
-        <h2 class="section-title">
-          <span class="badge"><span class="ico">✍️</span> Blogs</span>
-        </h2>
+        <h2 class="section-title"><span class="badge"><span class="ico">✍️</span> Blogs</span></h2>
         <p class="hint">Posts across OpenTelemetry, Kubernetes, observability, and AI.</p>
       </div>
 
       <div class="list">
         <div class="item">
           <div class="body">
-            <div class="meta">
-              <span class="chip">OpenTelemetry</span><span class="chip">Observability</span><span class="chip">Kubernetes</span>
-            </div>
+            <div class="meta"><span class="chip">OpenTelemetry</span><span class="chip">Observability</span><span class="chip">Kubernetes</span></div>
             <h3>From Zero to Observability: Your first steps sending OpenTelemetry data to an Observability backend</h3>
-            <div class="links">
-              <a href="https://dev.to/jadelassery/from-zero-to-observability-your-first-steps-sending-opentelemetry-data-to-an-observability-backend-29l7" target="_blank" rel="noopener">Read <span>↗</span></a>
-            </div>
+            <div class="links"><a href="https://dev.to/jadelassery/from-zero-to-observability-your-first-steps-sending-opentelemetry-data-to-an-observability-backend-29l7" target="_blank" rel="noopener">Read <span>↗</span></a></div>
           </div>
         </div>
 
@@ -597,9 +543,7 @@
     <!-- VIDEOS -->
     <section id="videos" class="sec-videos">
       <div class="section-head">
-        <h2 class="section-title">
-          <span class="badge"><span class="ico">▶️</span> Videos</span>
-        </h2>
+        <h2 class="section-title"><span class="badge"><span class="ico">▶️</span> Videos</span></h2>
         <p class="hint">Shorts + full demos.</p>
       </div>
 
@@ -645,9 +589,7 @@
     <!-- COMMUNITY -->
     <section id="community" class="sec-community">
       <div class="section-head">
-        <h2 class="section-title">
-          <span class="badge"><span class="ico">☁️</span> Community & Open Source</span>
-        </h2>
+        <h2 class="section-title"><span class="badge"><span class="ico">☁️</span> Community & Open Source</span></h2>
         <p class="hint">Organizer roles + public recaps.</p>
       </div>
 
@@ -677,7 +619,6 @@
   </main>
 
   <script>
-    // Smooth scrolling for in-page links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener("click", (e) => {
         const id = a.getAttribute("href");
